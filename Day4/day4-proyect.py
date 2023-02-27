@@ -9,7 +9,7 @@ print(f"Hello {userName} tell me a number between 1 and 100")
 while (userLife >= 0):
 	userLife -= 1
 	nAttempts += 1
-	inputNumber = int(input())
+	inputNumber = int(input(print(f"What is your number?: ")))
 	if inputNumber >= 101 or inputNumber <= 0:
 		print("Your number is not in the range")	
 	elif inputNumber > secretNumber :
