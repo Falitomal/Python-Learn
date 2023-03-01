@@ -18,7 +18,7 @@ def promedio(lista_reducida):
 	promedio = lista_numeros / len(lista_reducida)
 	return promedio
 
-lista_numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+lista_numeros = [12, 2, 3, 4, 5, 6, 7, 8, 9, 20]
 lista_reducida = reducir_lista(lista_numeros)
 print(lista_reducida)
 print(promedio(lista_reducida))

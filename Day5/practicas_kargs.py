@@ -10,5 +10,5 @@ def lista_atributos(**kwargs):
 #funcion llamada describir_persona, que tome su nombre como parametro y una serie indeterminado de argumentos
 def describir_persona(nombre, **kwargs):
     print(f"Características de {nombre}:")
-    for arg in kwargs:
-      print(f"{arg}: {kwargs[arg]}")
+    for clave, valor in kwargs:
+      print(f"{clave}: {valor}")
