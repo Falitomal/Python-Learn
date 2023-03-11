@@ -128,8 +128,11 @@ while  not finalizar_programa:
         mis_categorias = mostrar_categoria(mi_ruta)
         mi_categoria = elegir_categoria(mis_categorias)
         mi_listas_recetas = mostrar_recetas(mi_categoria)
-        mi_receta = elegir_recetas(mi_listas_recetas)
-        leer_receta(mi_receta)
+        if len(mi_listas_recetas) <1:
+            print("No hay recetas disponibles")
+        else:
+            mi_receta = elegir_recetas(mi_listas_recetas)
+            leer_receta(mi_receta)
         volver_inicio()
         pass
     elif menu == 2:
@@ -146,8 +149,11 @@ while  not finalizar_programa:
         mis_categorias = mostrar_categoria(mi_ruta)
         mi_categoria = elegir_categoria(mis_categorias)
         mi_listas_recetas = mostrar_recetas(mi_categoria)
-        mi_receta = elegir_recetas(mi_listas_recetas)
-        eliminar_receta(mi_receta)
+        if len(mi_listas_recetas) < 1:
+            print("No hay recetas")
+        else:
+            mi_receta = elegir_recetas(mi_listas_recetas)
+            eliminar_receta(mi_receta)
         volver_inicio()
     elif menu == 5:
         mis_categorias = mostrar_categoria(mi_ruta)
