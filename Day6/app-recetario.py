@@ -2,34 +2,29 @@ import os
 from pathlib import Path
 from os import system
 
-mi_ruta = Path(Path.home(), "Recetas")
+mi_ruta = Path(Path.home(),'Downloads', "Recetas")
 
 def mostar_menu():
-    system("clear")
+    system("cls")
     print('*' * 50)
-    print(f"Estas son las opciones : ")
+    print('*' * 11 + " Estas son las opciones : "           + '*' *11)
     print('*' * 50)
     print(f"En mi carpeta de recetas : {mi_ruta}")
-    print(f"Existen estas recetas : {contar_recetas(mi_ruta)}")
+    print(f"Existen estas recetas : {contar_recetas(mi_ruta)}\n")
 
     eleccion_menu = 'x'
     while not eleccion_menu.isnumeric() or int(eleccion_menu) not in range(1,7):
-        system("clear")
         print(f"1. Leer receta")
         print(f"2. Crear receta")
         print(f"3. Crear Categoria")
         print(f"4. Eliminar receta")
         print(f"5. Eliminar Categoria")
-        print(f"6. Salir")
-        print("Elige un opcion: \n")
+        print(f"6. Salir\n")
+        print("Elige un opcion:")
         eleccion_menu = input()
     
-    return(eleccion_menu)
+    return(int(eleccion_menu))
 
-def saludar():
-    print(f"Bienvenido al recetario")
-    nombre = input("¿Cómo te llamas? ")
-    return nombre
 
 def contar_recetas(ruta):
     cont = 0
@@ -38,12 +33,12 @@ def contar_recetas(ruta):
     return cont
 
 def mostrar_categoria(ruta):
-    print(f"Estas son las categorias disponibles : ")
+    print(f"Estas son las categorias disponibles : \n")
     categorias = Path(ruta)
     lista_categorias = []
     contador = 1
 
-    for carpeta in categorias.iterdir("*"):
+    for carpeta in categorias.iterdir():
         carpeta_str = str(carpeta.name)
         print(f"{contador} : Categoria : {carpeta_str}")
         lista_categorias.append(carpeta)
@@ -66,17 +61,17 @@ def mostrar_recetas(ruta):
     for receta in laruta.glob('*.txt'):
         receta_str = str(receta.name)
         print(f"{contador} : {receta_str}")
-        lista_recetas.append(receta_str)
+        lista_recetas.append(receta)
         contador +=1
     
     return lista_recetas
 
 def elegir_recetas(lista):
     eleccion_receta = 's'
-    while not eleccion_receta.isnumeric() or int(eleccion_receta) is not range(1, len(lista) + 1):
+    while not eleccion_receta.isnumeric() or int(eleccion_receta) not in range(1, len(lista) + 1):
         eleccion_receta = input("\n Elige una receta: ")
 
-    return lista[int(eleccion_receta - 1)]
+    return lista[int(eleccion_receta) - 1]
 
 def leer_receta(receta):
     print(Path.read_text(receta))
@@ -85,13 +80,13 @@ def crear_receta(ruta):
     existe = False
 
     while not existe:
-        print("Escribe el nombre de tu receta")
+        print("Escribe el nombre de tu receta:")
         nombre_receta = input() + '.txt'
         print("Escribe la nueva receta: \n")
         contenido_receta = input()
         ruta_nueva = Path(ruta, nombre_receta)
 
-        if not os.path.exist(ruta_nueva):
+        if not os.path.exists(ruta_nueva):
             Path.write_text(ruta_nueva, contenido_receta)
             print(f"Tu receta {nombre_receta} ha sido creada ")
             existe = True
@@ -106,7 +101,7 @@ def crear_categoria(ruta):
         nombre_categoria = input() 
         ruta_nueva = Path(ruta, nombre_categoria)
 
-        if not os.path.exist(ruta_nueva):
+        if not os.path.exists(ruta_nueva):
             Path.mkdir(ruta_nueva)
             print(f"Tu categoria {nombre_categoria} ha sido creada ")
             existe = True
@@ -124,7 +119,7 @@ def eliminar_categoria(categoria):
 def volver_inicio():
     eleccion_regresar = 's'
     while eleccion_regresar.lower() != 'y':
-        eleccion_regresar = input("\n Pulsa y para regresar")
+        eleccion_regresar = input("\n Pulsa 'Y' para regresar\n")
 #mostar menu inicio
 finalizar_programa = False
 while  not finalizar_programa:
